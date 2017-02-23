@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import datasets
 from util import create_dataset 
+import sklearn
 print("Hello Perceptron")
 
 
@@ -37,7 +38,7 @@ def calculate_misses(weights, features, labels):
             res.append(i)
     return res
 
-def train(x_train, y_train):
+def train(x_train, y_train, max_iter=1000):
     """
     trains on the given data.
 
@@ -47,6 +48,8 @@ def train(x_train, y_train):
         feature matrix (incl. x0 = 1)
     y_train:
         label vector (normalized to +-1)
+    max_iter:
+        max number of iterations
     Returns
     -------
     weights
@@ -56,7 +59,9 @@ def train(x_train, y_train):
     number_of_features = len(x_train[0])
     weights = np.random.rand(number_of_features)
     done = False
-    while not done:
+    iter = 0
+    while not done and iter < max_iter:
+        iter += 1
         misses = calculate_misses(weights, x_train, y_train)
         if len(misses) == 0:
             done = True

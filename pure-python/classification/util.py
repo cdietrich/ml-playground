@@ -17,9 +17,8 @@ def create_dataset(n_samples=100, insert_x0=True):
     x_train
     y_train
     """
-    # create 2 class separable dataset using sklearn
-    dataset = datasets.make_blobs(n_samples=100, n_features=2, centers=2, cluster_std=1.0,
-                                     center_box=(-10.0, 10.0), shuffle=True)
+    # create 2 class dataset using sklearn
+    dataset = datasets.make_blobs(n_samples=100, n_features=2, centers=2)
     x_raw = dataset[0]
     y_raw = dataset[1]
     # add x0

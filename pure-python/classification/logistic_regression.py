@@ -8,7 +8,7 @@ print("Hello Logistic Regression")
 from util import create_dataset 
 
 x,y = create_dataset(100, insert_x0=False)
-learning_rate = 0.1
+learning_rate = 0.01
 n = len(x)
 w = np.array([0,0])
 def error(x,y,w):
@@ -20,7 +20,10 @@ def error(x,y,w):
     return err
 
 err = err = error(x,y,w)
-while err > 0.01:
+iter = 0
+max_iter = 1000
+while err > 0.01 and iter < max_iter:
+    iter += 1
     d_err = 0
     for i in range(0, n):
         d_err += y[i]*x[i] / (1 + np.exp(y[i]*np.dot(np.transpose(w),x[i])))
