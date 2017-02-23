@@ -7,31 +7,8 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import datasets
+from util import create_dataset 
 print("Hello Perceptron")
-
-def create_dataset(n_samples=100):
-    """
-    create a training dataset
-
-    Parameters
-    ----------
-    n_samples:
-        number of samples
-    Returns
-    -------
-    x_train
-    y_train
-    """
-    # create 2 class separable dataset using sklearn
-    dataset = datasets.make_classification(n_samples=n_samples, n_features=2, n_redundant=0,
-                                           random_state=1, n_clusters_per_class=1, flip_y=0)
-    x_raw = dataset[0]
-    y_raw = dataset[1]
-    # add x0
-    x_train = np.insert(x_raw, [0], 1, axis=1)
-    # normalize y
-    y_train = y_raw*2-1
-    return x_train, y_train
 
 
 def calculate_misses(weights, features, labels):
